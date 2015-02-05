@@ -1,5 +1,7 @@
 # Minesweeper
-Programming for Minesweeper
 
-test
-test2
+Minesweeper in Python.
+
+# Usage
+
+   $ python minesweeper.py
