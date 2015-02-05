@@ -4,4 +4,4 @@ Minesweeper in Python.
 
 # Usage
 
-   $ python minesweeper.py
+```$ python minesweeper.py```
