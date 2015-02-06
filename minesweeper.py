@@ -1,8 +1,11 @@
 # coding: UTF-8
 # コンソールで動くマインスイーパー
 # LEVEL 1
-# 1. 基本機能の実装（マスを開く、地雷チェック、クリア判定）
-# 2. フィールドは5x5で固定、地雷も5個固定
+	# 1. 基本機能の実装（マスを開く、地雷チェック、クリア判定）
+	# 2. フィールドは5x5で固定、地雷も5個固定
+# LEVEL 2
+	#地雷チェックしたマスは開こうとしても開けない
+	#地雷チェックしたマスに再度地雷チェックしようとするとチェック解除
 
 import random
 
@@ -108,14 +111,26 @@ def main():
 		#入力に基づく処理
 		act_row = rownames.index(sel_row)
 		act_col = int(sel_col)
+
+		#マスを開くアクション
 		if act_type == "o":
-			if mine_mat[act_row][act_col] == "M":
-				cell_mat[act_row][act_col] = "M"
-				status = 1
-				break
-			cell_mat[act_row][act_col] = mine_mat[act_row][act_col]
+			if cell_mat[act_row][act_col] == "x":
+				print u"\n選択したマスは地雷チェックされているため開けません"
+				print u"地雷チェックを解除する場合は、再度地雷チェックをしてください"
+			else:
+				if mine_mat[act_row][act_col] == "M":
+					cell_mat[act_row][act_col] = "M"
+					status = 1
+					break
+				cell_mat[act_row][act_col] = mine_mat[act_row][act_col]
+		#マスを地雷チェックするアクション
 		elif act_type == "x":
-			cell_mat[act_row][act_col] = "x"
+			if cell_mat[act_row][act_col] == "x":
+				print u"\n地雷チェックを解除しました"
+				cell_mat[act_row][act_col] = "?"
+			else:
+				cell_mat[act_row][act_col] = "x"
+		#終了
 		else:
 			status = 1
 			break
